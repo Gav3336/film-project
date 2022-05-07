@@ -1,1 +1,49 @@
-<p>film works!</p>
+<!-- <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand"><mat-icon>play_arrow</mat-icon></a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+        <button class="btn btn-outline-success" (click)="chiamaDatiFilm()">Search</button>
+      </form>
+    </div>
+  </nav> -->
+
+  <mat-card
+  routerLink="/login"
+  class="example-card"
+  role="button"
+  *ngFor="let num of FilmCollector; let i = index"
+>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ FilmCollector[i].title }}</mat-card-title>
+    <mat-card-subtitle>{{ FilmCollector[i].year }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="vettoriDati.results[0].image"
+  />
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz
+      breeds of dog from Japan. A small, agile dog that copes very well with
+      mountainous terrain, the Shiba Inu was originally bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions> </mat-card-actions>
+</mat-card>
+
+<!-- <div class="card mb-3" style="max-width: 540px;" routerLink="/login" *ngFor="let num of FilmCollector; let i = index">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="FilmCollector[i].image" class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ FilmCollector[i].title }}</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">{{ FilmCollector[i].year }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div> -->

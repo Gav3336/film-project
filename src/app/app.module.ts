@@ -23,6 +23,27 @@ const LISTA = [
   { path: 'coming', component: ComingsoonComponent },
 ];
 
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAu-B708jAVwpP8hvQZpRrE2yUNjbFs4fg",
+
+  authDomain: "filminfo-28aa6.firebaseapp.com",
+
+  projectId: "filminfo-28aa6",
+
+  storageBucket: "filminfo-28aa6.appspot.com",
+
+  messagingSenderId: "86061728268",
+
+  appId: "1:86061728268:web:17c49839b2c728b55ca429",
+
+  measurementId: "G-69EM675CHG"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
+
 @NgModule({
   declarations: [
     AppComponent,
