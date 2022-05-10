@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -15,12 +16,14 @@ import {MatCardModule} from '@angular/material/card';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { ReactiveFormsModule } from '@angular/forms';
+import { InfoComponent } from './info/info.component';
 
 const LISTA = [
   { path: 'login', component: LoginComponent },
   { path: '', component: FilmComponent },
   { path: 'top250', component: Top250Component },
   { path: 'coming', component: ComingsoonComponent },
+  { path: 'info', component: InfoComponent },
 ];
 
 const firebaseConfig = {
@@ -51,7 +54,8 @@ const analytics = getAnalytics(app);
     FilmComponent,
     LoginComponent,
     MenuComponent,
-    Top250Component
+    Top250Component,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,8 @@ const analytics = getAnalytics(app);
     RouterModule.forRoot(LISTA),
     HttpClientModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

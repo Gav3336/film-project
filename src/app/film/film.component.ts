@@ -18,13 +18,16 @@ export class FilmComponent implements OnInit {
 
   FilmCollector: FilmClass[] = [];
 
-  nomeFilm: String;
+  nomeFilm: String = "";
+
+  infoFilm: boolean = false;
+  FilmID: String = "";
+  logged: boolean = true;
 
   constructor(private miohttp: HttpClient) {
     this.url = "";
     this.urlWiki = "";
     this.mostra = false;
-    this.nomeFilm = "undefined";
    }
 
   ngOnInit(): void {
@@ -33,31 +36,17 @@ export class FilmComponent implements OnInit {
   }
 
   chiamaDatiFilm() {
-    this.url = 'https://imdb-api.com/it/API/Search/k_nrhizwhl/' + this.nomeFilm;
+    this.url = 'https://imdb-api.com/it/API/Search/k_hp5e67w2/' + this.nomeFilm;
     this.mostra = false;
     this.miohttp.get(this.url).subscribe((dati) => {
       console.log(dati);
       this.vettoriDati = dati;
       this.mostra = true;
-      console.log(this.FilmCollector);
+
       this.fillCollector();
+      this.chiamaWikiFilm();
       
     });
-  }
-
-  chiamaWikiFilm() {
-    for (let i = 0; i < this.vettoriDati.results.length; i++) {
-      this.url =
-        'https://imdb-api.com/en/API/Wikipedia//' +
-        this.vettoriDati.results[i].id;
-      this.miohttp.get(this.url).subscribe((dati) => {
-        console.log(dati);
-        this.vettoriWiki = dati;
-        this.mostra = true;
-
-        this.fillCollector();
-      });
-    }
   }
 
   fillCollector() {
@@ -68,7 +57,54 @@ export class FilmComponent implements OnInit {
       this.FilmCollector[i].id = this.vettoriDati.results[i].id;
       this.FilmCollector[i].year = '22222';
     }
-    console.log(this.FilmCollector[0].image);
+  }
+
+  infoToggler(){
+    this.infoFilm = !this.infoFilm;
+    console.log(this.infoFilm);
+    
+  }
+
+  attachId(id: String, position: number){
+    this.FilmID = id;
+    this.infoToggler();
+  }
+
+  chiamaWikiFilm() {
+    for(let i = 0; i < this.vettoriDati.results.length; i++){
+    this.url = 'https://imdb-api.com/en/API/Wikipedia/k_hp5e67w2/' + this.FilmCollector[i].id;
+    this.mostra = false;
+    this.miohttp.get(this.url).subscribe((dati) => {
+      
+      this.vettoriDati = dati;
+      this.mostra = true;
+
+      this.FilmCollector[i].plotShort = this.vettoriDati.plotShort.plainText;
+      this.FilmCollector[i].plotfull = this.vettoriDati.plotfull.plainText;
+      console.log(this.FilmCollector[i].plotfull);
+    });
+  }
+  }
+
+  chiamaTrailer(id:String, position: number) {
+    this.url = 'https://imdb-api.com/en/API/Wikipedia/k_hp5e67w2/' + id;
+    this.mostra = false;
+    this.miohttp.get(this.url).subscribe((dati) => {
+      
+      this.vettoriDati = dati;
+      this.mostra = true;
+
+      this.FilmCollector[position].plotShort = this.vettoriDati.plotShort.plainText;
+      console.log(this.FilmCollector[position].plotShort);
+    });
+  }
+
+  controlloLogin(){
+    if(this.logged == true){
+      this.infoFilm = true;
+    }else{
+      this.infoFilm = false;
+    }
   }
 
 }

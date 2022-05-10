@@ -1,18 +1,19 @@
-<!-- <nav class="navbar navbar-light bg-light">
+<div *ngIf="!infoFilm; else info">
+<nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand"><mat-icon>play_arrow</mat-icon></a>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+      <div class="d-flex" standalone>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "nomeFilm">
         <button class="btn btn-outline-success" (click)="chiamaDatiFilm()">Search</button>
-      </form>
+      </div>
     </div>
-  </nav> -->
+  </nav>
 
+  <div *ngFor="let num of FilmCollector; let i = index">
   <mat-card
-  routerLink="/login"
+  (click) = "controlloLogin()"
   class="example-card"
-  role="button"
-  *ngFor="let num of FilmCollector; let i = index"
+  role="button" *ngIf="FilmCollector[i].image != 'https://imdb-api.com/images/original/nopicture.jpg'"
 >
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -21,17 +22,19 @@
   </mat-card-header>
   <img
     mat-card-image
-    src="vettoriDati.results[0].image"
+    [src]="FilmCollector[i].image"
   />
   <mat-card-content>
     <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
+      {{ this.FilmCollector[i].plotShort }}
     </p>
   </mat-card-content>
-  <mat-card-actions> </mat-card-actions>
+  <mat-card-actions></mat-card-actions>
 </mat-card>
+</div>
+</div>
+
+
 
 <!-- <div class="card mb-3" style="max-width: 540px;" routerLink="/login" *ngFor="let num of FilmCollector; let i = index">
     <div class="row g-0">
@@ -47,3 +50,10 @@
       </div>
     </div>
   </div> -->
+
+  <ng-template #info>
+    <button (click)="infoToggler()"> aaaaa</button>
+    
+    <p>{{ this.FilmCollector[3].plotfull }}</p>
+  
+  </ng-template>
