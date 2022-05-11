@@ -1,1 +1,22 @@
-<p>top250 works!</p>
+<div *ngFor="let num of FilmCollector; let i = index">
+    <mat-card
+    class="example-card"
+    role="button" *ngIf="FilmCollector[i].image != 'https://imdb-api.com/images/original/nopicture.jpg'"
+  >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ FilmCollector[i].title }}</mat-card-title>
+      <mat-card-subtitle>{{ FilmCollector[i].year }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="FilmCollector[i].image"
+    />
+    <mat-card-content>
+      <p>
+        {{ this.FilmCollector[i].crew }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions></mat-card-actions>
+  </mat-card>
+  </div>
