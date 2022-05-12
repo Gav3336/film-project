@@ -16,14 +16,15 @@ import {MatCardModule} from '@angular/material/card';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { ReactiveFormsModule } from '@angular/forms';
-import { InfoComponent } from './info/info.component';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatSortModule} from '@angular/material/sort';
+
 
 const LISTA = [
   { path: 'login', component: LoginComponent },
   { path: '', component: FilmComponent },
   { path: 'top250', component: Top250Component },
   { path: 'coming', component: ComingsoonComponent },
-  { path: 'info', component: InfoComponent },
 ];
 
 const firebaseConfig = {
@@ -55,7 +56,6 @@ const analytics = getAnalytics(app);
     LoginComponent,
     MenuComponent,
     Top250Component,
-    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +64,10 @@ const analytics = getAnalytics(app);
     HttpClientModule,
     MatIconModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule,
+    ReactiveFormsModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

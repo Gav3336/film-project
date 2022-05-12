@@ -4,10 +4,11 @@ export class FilmSoon {
     id: String = "";
     year: String = "";
     genres: String = "";
-    directors: String[] = [];
+    directors: String = "";
     runtime: String = "";
-    Stars: String[] = [];
+    stars: String = "";
     plot: String = "";
+    release: String = "";
   
     constructor() {}
 }

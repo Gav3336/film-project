@@ -36,7 +36,7 @@ export class Top250Component implements OnInit {
   }
 
   chiamaDatiFilm() {
-    this.url = 'https://imdb-api.com/it/API/Top250Movies/k_hp5e67w2/' + this.nomeFilm;
+    this.url = 'https://imdb-api.com/it/API/Top250Movies/k_nrhizwhl/';
     this.mostra = false;
     this.miohttp.get(this.url).subscribe((dati) => {
       console.log(dati);
@@ -44,13 +44,13 @@ export class Top250Component implements OnInit {
       this.mostra = true;
 
       this.fillCollector();
-      console.log(this.FilmCollector)
+      console.log(this.FilmCollector);
       
     });
   }
 
   fillCollector() {
-    for (let i = 0; i < this.vettoriDati.items.lenght; i++) {
+    for (let i = 0; i < this.vettoriDati.items.length; i++) {
       this.FilmCollector.push(new FilmTop());
       this.FilmCollector[i].title = this.vettoriDati.items[i].title;
       this.FilmCollector[i].image = this.vettoriDati.items[i].image;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatiService } from '../comune/dati-service.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private servizio: DatiService) {
+  }
 
   ngOnInit(): void {
+    console.log(this.servizio.getLogged());
+    
   }
+
+  getControlloLogin(){
+    return this.servizio.getLogged();
+  }
+
 
 }

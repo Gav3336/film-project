@@ -9,16 +9,18 @@
     </div>
   </nav>
 
+
+  
   <div *ngFor="let num of FilmCollector; let i = index">
   <mat-card
-  (click) = "controlloLogin()"
+  (click) = "infoToggler()"
+  
   class="example-card"
   role="button" *ngIf="FilmCollector[i].image != 'https://imdb-api.com/images/original/nopicture.jpg'"
 >
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{ FilmCollector[i].title }}</mat-card-title>
-    <mat-card-subtitle>{{ FilmCollector[i].year }}</mat-card-subtitle>
+    <p>{{ FilmCollector[i].year }}</p>
   </mat-card-header>
   <img
     mat-card-image
@@ -33,6 +35,7 @@
 </mat-card>
 </div>
 </div>
+
 
 
 
@@ -52,8 +55,7 @@
   </div> -->
 
   <ng-template #info>
-    <button (click)="infoToggler()"> aaaaa</button>
-    
-    <p>{{ this.FilmCollector[3].plotfull }}</p>
-  
+    <p>
+      {{ this.FilmCollector[0].plotShort }}
+    </p>
   </ng-template>

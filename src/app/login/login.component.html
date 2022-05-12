@@ -1,1 +1,64 @@
-<p>login works!</p>
+<div *ngIf="status == 0; else signup">
+    <div class="login-box">
+        <h1>Login</h1>
+        <form>
+            <label>Username</label>
+            <input type="text" placeholder="" [(ngModel)]="nome" name="first"/>
+            <label>Password</label>
+            <input type="password" placeholder="" [(ngModel)]="pwd" name="second"/>
+            <input type="button" value="Login" (click)="validazione()"/>
+        </form>
+    </div>
+    <p class="para-2">
+        Not have an account? <a role="button" (click)="status = 1">Sign Up Here</a>
+    </p>
+    <p class="para-2">
+        {{ messaggio }}
+        </p>
+</div>
+
+
+<ng-template #signup>
+    <div *ngIf="status == 1">
+        <div class="signup-box">
+            <h1>Sign Up</h1>
+            <h4>It's free (i think...)</h4>
+            <form>
+                <label>Username</label>
+                <input type="text" placeholder="" [(ngModel)]="username" name="first" />
+                <label>Password</label>
+                <input type="password" placeholder="" [(ngModel)]="password" name="second" />
+                <input type="button" value="register" (click)="controlloAccount()"/>
+            </form>
+        <p class="para-2">
+            Already have an account? <a role="button" (click)="status = 0">Login here</a>
+        </p>
+    </div>
+        <p class="para-2">
+        {{ messaggio }}
+        </p>
+    </div>
+</ng-template>
+
+<!-- <ng-template #admin>
+    <button (click)="status = 0">indiettro</button>
+    <div *ngIf="status == 2">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usernames</th>
+                <th scope="col">Passwords</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let num of numAccount; let i = index">
+                <th scope="row" >1</th>
+                <td>{{ numAccount[i].userName }}</td>
+                <td>{{ numAccount[i].password }}</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</ng-template> -->
