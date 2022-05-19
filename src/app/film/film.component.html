@@ -13,7 +13,6 @@
   
   <div *ngFor="let num of FilmCollector; let i = index">
   <mat-card
-  (click) = "infoToggler()"
   
   class="example-card"
   role="button" *ngIf="FilmCollector[i].image != 'https://imdb-api.com/images/original/nopicture.jpg'"
@@ -31,7 +30,9 @@
       {{ this.FilmCollector[i].plotShort }}
     </p>
   </mat-card-content>
-  <mat-card-actions></mat-card-actions>
+  <mat-card-actions *ngIf="logged">
+    <button mat-button (click)="addFavourite(i)">LIKE</button>
+  </mat-card-actions>
 </mat-card>
 </div>
 </div>

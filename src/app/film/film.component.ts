@@ -24,6 +24,8 @@ export class FilmComponent implements OnInit {
   infoFilm: boolean = false;
   position: number = 0;
 
+  logged: boolean = false;
+
   constructor(private miohttp: HttpClient, private servizio: DatiService) {
     this.url = "";
     this.urlWiki = "";
@@ -36,7 +38,7 @@ export class FilmComponent implements OnInit {
   }
 
   chiamaDatiFilm() {
-    this.url = 'https://imdb-api.com/it/API/Search/k_nrhizwhl/' + this.nomeFilm;
+    this.url = 'https://imdb-api.com/it/API/Search/k_hp5e67w2/' + this.nomeFilm;
     this.mostra = false;
     this.miohttp.get(this.url).subscribe((dati) => {
       console.log(dati);
@@ -44,6 +46,8 @@ export class FilmComponent implements OnInit {
       this.mostra = true;
 
       this.fillCollector();
+      this.setLogged()
+      console.log(this.logged);
     });
   }
 
@@ -67,6 +71,16 @@ export class FilmComponent implements OnInit {
     }else{
       this.infoFilm = false;
     }
+  }
+
+  setLogged(){
+    if(this.servizio.getLogged()){
+      this.logged = this.servizio.getLogged()
+    }
+  }
+
+  addFavourite(id: number){
+    this.servizio.addFavouriteFilm(this.FilmCollector[id]);
   }
 
 }

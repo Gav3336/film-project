@@ -19,16 +19,16 @@
 
 
 <ng-template #signup>
-    <div *ngIf="status == 1">
+    <div *ngIf="status == 1; else favourite">
         <div class="signup-box">
             <h1>Sign Up</h1>
             <h4>It's free (i think...)</h4>
             <form>
                 <label>Username</label>
-                <input type="text" placeholder="" [(ngModel)]="username" name="first" />
+                <input type="text" placeholder="" [(ngModel)]="username" name="first" value="nome"/>
                 <label>Password</label>
                 <input type="password" placeholder="" [(ngModel)]="password" name="second" />
-                <input type="button" value="register" (click)="controlloAccount()"/>
+                <input type="button" value="register" (click)="controlloRegistrazione()"/>
             </form>
         <p class="para-2">
             Already have an account? <a role="button" (click)="status = 0">Login here</a>
@@ -40,9 +40,36 @@
     </div>
 </ng-template>
 
-<!-- <ng-template #admin>
-    <button (click)="status = 0">indiettro</button>
-    <div *ngIf="status == 2">
+<ng-template #favourite>
+    <div *ngIf="status == 2; else admin">
+        <h1>Favourite Films</h1>
+
+        <div *ngFor="let num of FavouriteFilm; let i = index">
+            <mat-card
+            class="example-card"
+            role="button"
+          >
+            <mat-card-header>
+              <mat-card-title>{{ FavouriteFilm[i].title }}</mat-card-title>
+              <p>{{ FavouriteFilm[i].year }}</p>
+            </mat-card-header>
+            <img
+              mat-card-image
+              [src]="FavouriteFilm[i].image"
+            />
+            <mat-card-content>
+              <p>
+                {{ this.FavouriteFilm[i].plotShort }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+          </div>
+    </div>
+</ng-template>
+
+<ng-template #admin>
+    <div *ngIf="status == 99; else error">
+        <button (click)="status = 0">indietro</button>
         <table class="table">
             <thead>
               <tr>
@@ -52,13 +79,29 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor = "let num of numAccount; let i = index">
-                <th scope="row" >1</th>
-                <td>{{ numAccount[i].userName }}</td>
-                <td>{{ numAccount[i].password }}</td>
-                <td>@mdo</td>
+              <tr *ngFor = "let num of accountData; let i = index">
+                <th scope="row" >{{ i }}</th>
+                <td>{{ accountData[i].userName }}</td>
+                <td>{{ accountData[i].password }}</td>
+              </tr>
+              <tr>
+                <th scope="row" > 1</th>
+                <td>ciao</td>
+                <td>123</td>
               </tr>
             </tbody>
           </table>
+
+          
     </div>
-</ng-template> -->
+    <div>
+        {{ accountData[0].userName }}
+        {{ accountData[0].password }}
+    </div>
+</ng-template>
+
+
+
+<ng-template #error>
+    <h1> Error in Loading </h1>
+</ng-template>

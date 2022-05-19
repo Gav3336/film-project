@@ -1,0 +1,11 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+  .content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 200px;
+}

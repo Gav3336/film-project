@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ComingsoonComponent implements OnInit {
   url;
-  urlWiki;
 
   mostra: boolean;
 
@@ -25,7 +24,6 @@ export class ComingsoonComponent implements OnInit {
 
   constructor(private miohttp: HttpClient) {
     this.url = "";
-    this.urlWiki = "";
     this.mostra = false;
    }
 
@@ -35,6 +33,7 @@ export class ComingsoonComponent implements OnInit {
   }
 
   chiamaDatiFilm() {
+    //richiesta dati
     this.url = 'https://imdb-api.com/it/API/ComingSoon/k_nrhizwhl/';
     this.mostra = false;
     this.miohttp.get(this.url).subscribe((dati) => {
@@ -48,6 +47,7 @@ export class ComingsoonComponent implements OnInit {
   }
 
   fillCollector() {
+    //inserimento dati ricevuti dei film
     for (let i = 0; i < this.vettoriDati.items.length; i++) {
       this.FilmCollector.push(new FilmSoon());
       this.FilmCollector[i].title = this.vettoriDati.items[i].title;
@@ -62,17 +62,5 @@ export class ComingsoonComponent implements OnInit {
       this.FilmCollector[i].release = this.vettoriDati.items[i].releaseState;
     }
   }
-
-  infoToggler(){
-    this.infoFilm = !this.infoFilm;
-    console.log(this.infoFilm);
-    
-  }
-
-  attachId(id: String, position: number){
-    this.FilmID = id;
-    this.infoToggler();
-  }
-
 
 }

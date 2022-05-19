@@ -21,5 +21,4 @@ export class MenuComponent implements OnInit {
     return this.servizio.getLogged();
   }
 
-
 }
